@@ -1,9 +1,8 @@
 package com.webapp.WaggingTales.controller;
 
-public class Sitter {
+public class Register {
     private String firstname;
     private String lastname;
-    private String about;
     private String emailname;
 
     public String getFirstname() {
@@ -20,14 +19,6 @@ public class Sitter {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
-    public void setAbout(String about) {
-        this.about = about;
     }
 
     public String getEmailname() {
