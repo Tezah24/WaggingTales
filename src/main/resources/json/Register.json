@@ -1,0 +1,66 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RegisterReader {
+public static List<Register> readRegisterJson(File file) throws Exception {
+ObjectMapper objectMapper = new ObjectMapper();
+JsonNode rootNode = objectMapper.readTree(file);
+List<Register> registerList = new ArrayList<>();
+
+for (JsonNode node : rootNode) {
+String firstname = node.get("firstname").asText();
+String lastname = node.get("lastname").asText();
+String emailname = node.get("emailname").asText();
+registerList.add(new Register(firstname, lastname, emailname));
+}
+
+return registerList;
+}
+
+public static void main(String[] args) throws Exception {
+File file = new File("src/main/resources/json/Register.json");
+List<Register> registerList = readRegisterJson(file);
+for (Register register : registerList) {
+System.out.println(register.getFirstname() + " " + register.getLastname() + " " + register.getEmailname());
+}
+}
+}
+
+class Register {
+private String firstname;
+private String lastname;
+private String emailname;
+
+public Register(String firstname, String lastname, String emailname) {
+this.firstname = firstname;
+this.lastname = lastname;
+this.emailname = emailname;
+}
+
+public String getFirstname() {
+return firstname;
+}
+
+public void setFirstname(String firstname) {
+this.firstname = firstname;
+}
+
+public String getLastname() {
+return lastname;
+}
+
+public void setLastname(String lastname) {
+this.lastname = lastname;
+}
+
+public String getEmailname() {
+return emailname;
+}
+
+public void setEmailname(String emailname) {
+this.emailname = emailname;
+}
+}

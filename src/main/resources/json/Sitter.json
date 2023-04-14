@@ -1,0 +1,77 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SitterReader {
+public static List<Sitter> readSitterJson(File file) throws Exception {
+ObjectMapper objectMapper = new ObjectMapper();
+JsonNode rootNode = objectMapper.readTree(file);
+List<Sitter> sitterList = new ArrayList<>();
+
+for (JsonNode node : rootNode) {
+String firstname = node.get("firstname").asText();
+String lastname = node.get("lastname").asText();
+String lastname = node.get("about").asText();
+String emailname = node.get("emailname").asText();
+sitterList.add(new Sitter(firstname, lastname,about, emailname));
+}
+
+return sitterList;
+}
+
+public static void main(String[] args) throws Exception {
+File file = new File("src/main/resources/json/Sitter.json");
+List<Sitter> sitterList = readSitterJson(file);
+for (Sitter sitter : sitterList) {
+System.out.println(sitter.getFirstname() + " " + register.getLastname() + " " + register.getAbout() + " " + register.getEmailname());
+}
+}
+}
+
+class Sitter {
+private String firstname;
+private String lastname;
+private String about;
+private String emailname;
+
+public Sitter(String firstname, String lastname, String about, String emailname) {
+this.firstname = firstname;
+this.lastname = lastname;
+this.about = about;
+this.emailname = emailname;
+}
+
+public String getFirstname() {
+return firstname;
+}
+
+public void setFirstname(String firstname) {
+this.firstname = firstname;
+}
+
+public String getLastname() {
+return lastname;
+}
+
+public void setLastname(String lastname) {
+this.lastname = lastname;
+}
+
+public String getAbout() {
+return about;
+}
+
+public void setAbout(String about) {
+this.about = about;
+}
+
+public String getEmailname() {
+return emailname;
+}
+
+public void setEmailname(String emailname) {
+this.emailname = emailname;
+}
+}
